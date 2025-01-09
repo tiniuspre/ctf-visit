@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  visitor_bot:
+    build: visitor-bot/
+    ports:
+      - "8000:8000"
+    networks:
+      - flag-net
+
+  internal_server:
+    build: internal-server/
+    networks:
+      - flag-net
+    environment:
+        - FLAG=CTFkom{test_flag}
+
+networks:
+  flag-net:
+    driver: bridge
